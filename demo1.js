@@ -119,49 +119,123 @@
     
 // // //products
 
-let products=[
-    {pid:100,pName:'apple',band:'5g',price:120000,display:'led'},
-    {pid:101,pName:'samsaung',band:'5g',price:45000,display:'led'},
-    {pid:102,pName:'blackberry',band:'4g',price:50000,display:'led'},
-    {pid:103,pName:'nokia',band:'3g',price:1200,display:'lcd'},
-    {pid:104,pName:'motorola',band:'4g',price:10000,display:'lcd'}
+// let products=[
+//     {pid:100,pName:'apple',band:'5g',price:120000,display:'led'},
+//     {pid:101,pName:'samsaung',band:'5g',price:45000,display:'led'},
+//     {pid:102,pName:'blackberry',band:'4g',price:50000,display:'led'},
+//     {pid:103,pName:'nokia',band:'3g',price:1200,display:'lcd'},
+//     {pid:104,pName:'motorola',band:'4g',price:10000,display:'lcd'}
+// ]
+
+// // // //product name only
+// // // let product1=products.map(product1=>product1.pName)
+// // // console.log(product1)
+
+// // // //details of product with lcd display
+// let product2=products.filter(product2=>product2.display==="lcd")
+// console.log(product2)
+
+// //print 5g mobile
+
+// let product3=products.filter(p=>p.band==="5g")
+// product3.forEach((p)=>console.log(p.price,p.pName))
+
+
+// //filter mobiles based on prices 
+
+// let minPrice=1000
+// let maxPrice=10000
+// let product4=products.filter(p=>p.price>=minPrice&&p.price<=maxPrice)
+// product4.forEach((p)=>console.log(p.pName))
+
+
+// // costly mobile
+
+// let costlyproduct = products.reduce((minPriceproduct,currentProduct)=>{
+//     return(currentProduct.price > minPriceproduct.price)? currentProduct:minPriceproduct;
+// },products[0]);
+
+// console.log("costly mobile:",costlyproduct.pName);
+
+
+// // low cost mobile
+
+// let lowcostproduct = products.reduce((maxPriceproduct,currentProduct)=>{
+//     return(currentProduct.price < maxPriceproduct.price)? currentProduct:maxPriceproduct;
+// },products[0]);
+
+// console.log("costly mobile:",lowcostproduct.pName);
+
+//[ no,district,+ve cases,death rate,curred rate,1st dose vaccine,2nd dose vaccine]
+covid_data = [
+    [1,'Ernakulam',34000,2000,23000,20000,2000],
+    [2,'Idukki',14000,3000,25000,30000,1000],
+    [3,'Thrissur',24000,4000,33000,24000,2500],
+    [4,'Pathanamthitta',20000,2000,45000,22000,1500],
+    [5,'Kozhikode',44000,5000,12000,21000,500],
+    [6,'Palakkad',12000,1000,20000,23000,3400],
+    [7,'Kottayam',27000,1500,27000,14000,1000],
+    [8,'Kollam',14000,2500,25000,18000,2700]
 ]
 
-// // //product name only
-// // let product1=products.map(product1=>product1.pName)
-// // console.log(product1)
 
-// // //details of product with lcd display
-let product2=products.filter(product2=>product2.display==="lcd")
-console.log(product2)
+// //1. district having Highest +ve case - 
 
-//print 5g mobile
+// let highestPositiveCase = covid_data.reduce(function(minCase,currentCase){
+//     return(currentCase[2] > minCase[2])? currentCase:minCase;
+// },covid_data[0]);
 
-let product3=products.filter(p=>p.band==="5g")
-product3.forEach((p)=>console.log(p.price,p.pName))
+// console.log("highest positive case:",highestPositiveCase[1]);
 
 
-//filter mobiles based on prices 
 
-let minPrice=1000
-let maxPrice=10000
-let product4=products.filter(p=>p.price>=minPrice&&p.price<=maxPrice)
-product4.forEach((p)=>console.log(p.pName))
+// //2. district having Highest 1st dose vaccine - 
+
+// let Highest_1st_dose_vaccine = covid_data.reduce(function(min,curr){
+//     return(curr[5] > min[5])? curr:min;
+// },covid_data[0]);
+
+// console.log("Highest 1st dose vaccine",Highest_1st_dose_vaccine[1]);
+
+// //3. district having lowest death rate - 
+
+// let lowest_death_rate= covid_data.reduce(function(min,curr){
+//     return(curr[3] > min[3])? curr:min;
+// },covid_data[0]);
+
+// console.log("lowest death rate",lowest_death_rate[1]);
 
 
-// costly mobile
+// //7. Print Thrissur details - 
 
-let costlyproduct = products.reduce((minPriceproduct,currentProduct)=>{
-    return(currentProduct.price > minPriceproduct.price)? currentProduct:minPriceproduct;
-},products[0]);
+// let details_of_thrissur=covid_data.filter(function(district){
+//     return district[1]==="Thrissur"
+// })
 
-console.log("costly mobile:",costlyproduct.pName);
+// // Output the details of 'Thrissur'
+//     console.log("Details of Thrissur:", details_of_thrissur);
 
 
-// low cost mobile
+// //5.positive case>15000
+// const districts_above_15000 = covid_data.filter(district => district[2] > 15000);
 
-let lowcostproduct = products.reduce((maxPriceproduct,currentProduct)=>{
-    return(currentProduct.price < maxPriceproduct.price)? currentProduct:maxPriceproduct;
-},products[0]);
+// // Extract district names from filtered data
+// const districtNames = districts_above_15000.map(district => district[1]);
 
-console.log("costly mobile:",lowcostproduct.pName);
+// // Print the districts with positive cases greater than 15000
+// console.log("Districts with positive cases greater than 15000:", districtNames);
+
+
+
+// // 4.Sort the data by positive cases in descending order
+// covid_data.sort((a, b) => b[2] - a[2]);
+// console.log("Sorted data with positive cases in descending order:");
+// console.table(covid_data);
+
+
+// // 6.Sort the data by first dose vaccine in ascending order
+// covid_data.sort((a, b) => a[5] - b[5]);
+
+// // Print the sorted data
+// console.log("Sorted data with first dose vaccine in ascending order:");
+// console.table(covid_data);
